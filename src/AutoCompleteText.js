@@ -11,6 +11,7 @@ export default class AutoCompleteText extends React.Component{
         ];
         this.state={
             suggestions: [],
+            text: '',
         };
     }
 
@@ -20,8 +21,16 @@ export default class AutoCompleteText extends React.Component{
         let suggestions = [];
          if (value.length>0){
             const regex = new RegExp(`^${value}`, 'i');
-            suggestions = this.items.sort().filter(v => v.test(regex)); }
-            this.setState(() => ({ suggestions}));
+            suggestions = this.items.sort().filter(v => regex.test(v));
+         }
+            this.setState(() => ({ suggestions,text: value}));
+    }
+
+    suggestionsSelected (value){
+        this.setState(() => ({
+            text: value,
+            suggestions : [],
+        }))
     }
 
     renderSuggestions () {
@@ -31,16 +40,17 @@ export default class AutoCompleteText extends React.Component{
         }
         return (
             <ul>
-                {this.suggestions.map((item) => <li> {item}</li>)}
+                {suggestions.map((item) => <li onClick={() => this.suggestionsSelected(item)}> {item}</li>)}
             </ul>
         );
     }
 
     render () {
+        const { text } = this.state;
         return (
             <div>
-                <input onChange={this.onTextChanged} type="text" />
-                {this.renderSuggestions}
+                <input value={text} onChange={this.onTextChanged} type="text" />
+                {this.renderSuggestions()}
             </div>
         )
     }
