@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
 import Hideable from './HideableText';
+import AutoComplete from './AutoCompleteText';
 
 function App() {
   return (
     <div className="App">
-      <div className="App-content">
         <Hideable text="Dynamic Text!" />
-      </div>
+        <AutoComplete />
     </div>
   );
 }

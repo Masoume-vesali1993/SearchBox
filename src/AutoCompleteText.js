@@ -10,4 +10,14 @@ export default class AutoCompleteText extends React.Component{
             'Alisa',
         ];
     }
+    render () {
+        return (
+            <div>
+                <input type="text" />
+                <ul>
+                    {this.items.map((item) => <li> {item}</li>)}
+                </ul>
+            </div>
+        )
+    }
 }
