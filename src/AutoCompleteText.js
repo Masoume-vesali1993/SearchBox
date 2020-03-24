@@ -9,11 +9,24 @@ export default class AutoCompleteText extends React.Component{
             'Arshia',
             'Alisa',
         ];
+        this.state={
+            suggestions: [],
+        };
     }
+
+    onTextChanged = (e) => {
+        const value = e.target.value;
+        if (value.length === 0){
+            this.setState(() => ({
+                suggestions: [],
+            }))
+        }
+    }
+
     render () {
         return (
             <div>
-                <input type="text" />
+                <input onChange={this.onTextChanged} type="text" />
                 <ul>
                     {this.items.map((item) => <li> {item}</li>)}
                 </ul>
