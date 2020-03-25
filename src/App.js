@@ -6,8 +6,12 @@ import AutoComplete from './AutoCompleteText';
 function App() {
   return (
     <div className="App">
-        <Hideable text="Dynamic Text!" />
-        <AutoComplete />
+      <div className="App-Component">
+        <div className="App-Component">
+          <Hideable text="Dynamic Text!" />
+          <AutoComplete />
+        </div>
+      </div>
     </div>
   );
 }
